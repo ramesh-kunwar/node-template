@@ -1,8 +1,14 @@
-import { CONFIG } from "./config/index";
+import app from "./app";
+import { CONFIG } from "./config";
 
-function greet(name: string) {
-    console.log(`Welcome ${name}`);
-}
+const startServer = () => {
+    try {
+        const PORT = CONFIG.PORT;
+        app.listen(PORT, () => console.log(`Listening at port ${PORT}`));
+    } catch (error) {
+        console.log(error);
+        process.exit(1);
+    }
+};
 
-console.log(CONFIG.PORT);
-greet("Ramesh!");
+startServer();
